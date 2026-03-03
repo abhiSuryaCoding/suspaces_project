@@ -1,32 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 780) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') {
-        setIsMenuOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, []);
 
   return (
     <header className="header">
@@ -45,7 +23,6 @@ function Header() {
             className="menu-toggle"
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
-            aria-controls="primary-navigation"
             onClick={() => setIsMenuOpen((prevState) => !prevState)}
           >
             <span />
@@ -54,11 +31,7 @@ function Header() {
           </button>
         </div>
 
-        <nav
-          id="primary-navigation"
-          className={`nav-links ${isMenuOpen ? 'open' : ''}`}
-          aria-label="Main navigation"
-        >
+        <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`} aria-label="Main navigation">
           <NavLink to="/" onClick={closeMenu}>
             Home
           </NavLink>

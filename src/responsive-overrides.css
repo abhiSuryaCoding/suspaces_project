@@ -1,0 +1,35 @@
+/* Conflict-safe responsive overrides: additive styles only */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (max-width: 780px) {
+  .nav-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero,
+  .section {
+    scroll-margin-top: 84px;
+  }
+}
+
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .nav-wrap {
+    padding-bottom: calc(0.9rem + env(safe-area-inset-bottom));
+  }
+}
